@@ -5,27 +5,34 @@ def IsPhoneNumber(phone):
     '''
 
     if len(phone) != 14:
-        raise Exception('wrong number exception 1')
+        return False
     
     if phone[0] != '(' and phone[3] != ')':
-        raise Exception('wrong number exception 2')
+        return False
     
     for i in range (1, 2):
         if not phone[i].isdecimal():
-            raise Exception('wrong number exception 3')
+            return False
     
     for i in range (5, 9):
         if not phone[i].isdecimal():
-            raise Exception('wrong number exception 4')
+            return False
     
     if not phone[9] == '-':
-        raise Exception('wrong number exception 5')
+        return False
     
     for i in range (11, 14):
         if not phone[i].isdecimal():
-            raise Exception('wrong number exception 6')
-    
+            return False
     return True
 
-phone = input('text your phone to validate: ')
-print(IsPhoneNumber(phone))
+message = 'Call me (55)55555-5555 tomorrow, or at (55)44444-4444'
+
+foundNumber = False
+for i in range(len(message)):
+    chunk = message[i:i+14]
+    if IsPhoneNumber(chunk):
+        print('Phone number found: ' + chunk)
+        foundNumber = True
+if not foundNumber:
+    print('Could not find any number!')
