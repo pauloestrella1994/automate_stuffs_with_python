@@ -30,3 +30,20 @@ print(mo7.group())
 regex2 = re.compile(r'(\+\*\?)+')
 mo8 = regex2.search("I learned about +*?+*?+*?+*?+*? regex syntax")
 print(mo8.group())
+
+#find a specific number of sufixes repetitions
+haRegex = re.compile(r'(Ha){3}')
+mo9 = haRegex.search('He said "HaHaHa"')
+print(mo9.group())
+
+#example using regex to find phone numbers three times
+phoneRegex = re.compile(r'((\d\d\d-)?\d\d\d-\d\d\d\d(,)?){3}')
+mo10 = phoneRegex.search('My numbers are 415-555-1234,555-4242,212-555-0000')
+print(mo10.group())
+
+#find a specific range of sufixes repetitions {min, max}
+haRegex2 = re.compile(r'(Ha){3,5}')
+mo11 = haRegex2.search('He said "HaHaHa"')
+mo12 = haRegex2.search('He said "HaHaHaHaHa"')
+print(mo11.group())
+print(mo12.group())
