@@ -3,6 +3,7 @@ import re, PyPDF2
 phoneRegex = re.compile(r'''
                             # some phones examples that we need to find
                             # 415-555-0000, 555-0000, (415) 555-0000, 555-0000 ext 12345, ext. 12345, x12345
+                        (
                             ((\d\d\d) | (\(\d\d\d\)))?    #area code
                             (\s|-)    #first separator
                             \d\d\d    #first 3 digits
@@ -10,7 +11,7 @@ phoneRegex = re.compile(r'''
                             \d\d\d\d    #last 4 digits
                             (((ext(\.)?\s)|x) #extension word-part (optional)
                                 (\d{2,5}))?   #extension number-part (optional)
-
+                        )
                         ''', re.VERBOSE)
 
 emailRegex = re.compile(r'''
@@ -32,4 +33,13 @@ for pageNum in range(pages):
 
 subs = re.compile(r'[\n]')
 clean_data = subs.sub("", data)
-print(clean_data)
+
+extracted_phone = phoneRegex.findall(clean_data)
+
+all_phone_numbers = []
+for phoneNumber in extracted_phone:
+    all_phone_numbers.append(phoneNumber[0])
+
+extracted_email = emailRegex.findall(clean_data)
+
+print(extracted_email)
