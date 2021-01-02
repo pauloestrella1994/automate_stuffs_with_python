@@ -41,5 +41,3 @@ for phoneNumber in extracted_phone:
     all_phone_numbers.append(phoneNumber[0])
 
 extracted_email = emailRegex.findall(clean_data)
-
-print(extracted_email)
