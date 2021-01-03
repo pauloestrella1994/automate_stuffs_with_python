@@ -3,6 +3,7 @@ from prettyconf import config
 from string import Template
 from datetime import datetime
 from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 from email.mime.text import MIMEText
 
 
@@ -28,6 +29,10 @@ class SendEmail:
         body = MIMEText(body_msg, 'html')
         self.msg.attach(body)
 
+    def attach_csv_file_to_email(self):
+        with open('email_phone.csv', 'rb') as csv_file:
+            self.msg.attach(MIMEApplication(csv_file.read(), name='emails_and_phones.csv'))
+
     def send_email(self):
         self.conn.ehlo()
         self.conn.starttls()
@@ -37,4 +42,5 @@ class SendEmail:
 
 mail_test = SendEmail()
 mail_test.attach_template_to_email()
+mail_test.attach_csv_file_to_email()
 mail_test.send_email()
