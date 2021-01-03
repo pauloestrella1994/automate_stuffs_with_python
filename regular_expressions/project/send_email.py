@@ -22,7 +22,7 @@ class SendEmail:
             body_msg = template.substitute(name='Paulo', datetime=date)
         
         self.msg = MIMEMultipart()
-        self.msg['from'] = 'Paulo'
+        self.msg['from'] = 'PythonProgram'
         self.msg['to'] = self.receiver_email
         self.msg['subject'] = 'CSV file attached...'
 
