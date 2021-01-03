@@ -19,7 +19,7 @@ class SendEmail:
         with open('regular_expressions/project/template_email.html', 'r') as html:
             template = Template(html.read())
             date = datetime.now().strftime('%d/%m/%Y')
-            body_msg = template.substitute(name='Paulo', datetime=date)
+            body_msg = template.substitute(name='Boss', datetime=date)
         
         self.msg = MIMEMultipart()
         self.msg['from'] = 'PythonProgram'
