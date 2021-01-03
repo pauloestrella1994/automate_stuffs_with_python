@@ -13,7 +13,7 @@ class SendEmail:
         self.conn.ehlo()
         self.conn.starttls()
         self.conn.login(self.email, self.password)
-        self.conn.sendmail(self.email, self.receiver_email, 'Subject: Testing\n <h1>Testing</h1>')
+        self.conn.sendmail(self.email, self.receiver_email, 'Subject: Testing\n\n <h1>Testing</h1>')
         self.conn.quit()
 
 mail_test = SendEmail()
