@@ -1,9 +1,9 @@
 import re
 
-message = 'Call me 415-555-1011 tomorrow, or at 415-555-1012'
+message = 'Call me (55)55555-5555 tomorrow, or at (55)44444-4444'
 
 #find the phone number pattern
-phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+phoneNumRegex = re.compile(r'\(\d{2}\)\d{5}-\d{4}')
 mo = phoneNumRegex.search(message)
 print(mo.group())
 

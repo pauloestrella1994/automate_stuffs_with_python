@@ -26,7 +26,7 @@ def IsPhoneNumber(phone):
             return False
     return True
 
-message = 'Call me (55)55555-5555 tomorrow, or at (55)44444-4444'
+message = 'Preciso que você me ligue amanhã em um desses números: (55)55555-5555 ou (55)44444-4444. É urgente!'
 
 foundNumber = False
 for i in range(len(message)):
