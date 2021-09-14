@@ -40,7 +40,7 @@ E vamos de mais exemplos! Imagine que você tenha um formulário e precise que o
 
 Validando esses valores com o python ficaria algo como:
 
-``` {.py}
+``` python
 import re
 
 CPF = input('Digite seu CPF: ')
@@ -52,7 +52,58 @@ if bool(validador.fullmatch(CPF)) is True:
 else:
     print('Esse não é um CPF válido!')
 ```
+Para esse exemplo, a função `fullmatch` verificar se a string inteira é válida para a regex escrita. 
 
+Executando esse bloco de código, podemos verificar que várias possíveis maneiras de apresentar um CPF são válidas. Vejamos!
 
+```
+Digite seu CPF: 906.591.650-40
+Esse é um CPF válido!
+```
+```
+Digite seu CPF: 906591.650-40
+Esse é um CPF válido!
+```
 
-Para entender melhor como funciona a biblioteca, você pode acessar a [documentação oficial](https://docs.python.org/3/library/re.html).
+Pórem, se, por algum acaso, o usuário digitar algum caractere errado, ou digitar um outro tipo de dado (por exemplo, um email) nesse campo, a regex nos auxilia pra negar essa validação!
+
+```
+Digite seu CPF: 906.59A.650-40
+Esse não é um CPF válido!
+```
+```
+Digite seu CPF: 906591.650-40812723
+Esse não é um CPF válido!
+```
+```
+Digite seu CPF: usuario@gmail.com
+Esse não é um CPF válido!
+```
+
+### Achando padrões dentro de um texto
+Vamos a mais um exemplo? Imagine agora que você tem um texto dentro de um email e precisa retirar apenas os números de telefone que estão contidos na mensagem, sejam eles quantos forem. Dada a mensagem abaixo:
+
+```
+'Preciso que você me ligue amanhã em um desses números: (55)55555-5555 ou (55)44444-4444. É urgente!'
+```
+
+Em python teríamos algo como:
+
+``` python
+import re
+
+messagem = 'Preciso que você me ligue amanhã em um desses números: (55)55555-5555 ou (55)44444-4444. É urgente!'
+
+fone_num_regex = re.compile(r'\(\d{2}\)\d{5}-\d{4}')
+números_de_telefone = fone_num_regex.findall(messagem)
+print(números_de_telefone)
+```
+
+A função `findall` retorna uma lista das strings encontradas, para o nosso exemplo, o retorno seria:
+
+``` 
+['(55)55555-5555', '(55)44444-4444']
+```
+
+# Conclusão
+As expressões regulares podem te ajudar muito com a validação, verificação, limpagem, raspagem de dados, entre outros objetivos, sejam eles quais forem! Para entender melhor como funciona a biblioteca de expressões regulares e quais métodos ela fornece, você pode acessar a [documentação oficial](https://docs.python.org/3/library/re.html).
